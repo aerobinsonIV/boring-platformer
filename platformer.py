@@ -40,13 +40,19 @@ blkSize = 100
 curBlkX = 0
 curBlkY = 0
 
+prevFrameBlkX = curBlkX
+prevFrameBlkY = curBlkY
+
+prevBlkX = curBlkX
+prevBlkY = curBlkY
+
 checkCornerCollisions = False
 
 #map
 blkMap = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0],
@@ -125,7 +131,6 @@ while not dead:
         ySpeed += accel
         if ySpeed > topSpeed:
             ySpeed = topSpeed
-
     #gravity
     ySpeed += 1
 
@@ -162,11 +167,16 @@ while not dead:
     elif y < 0:
         y = 0    
 
+    onGround = False
+
     #determine what block we are primarily in
     curBlkX = int((x + jousWidth / 2) // blkSize)
     curBlkY = int((y + jousHeight / 2) // blkSize)
 
-    onGround = False
+    if prevFrameBlkX != curBlkX or prevFrameBlkY != curBlkY:
+        prevBlkX = prevFrameBlkX
+        prevBlkY = prevFrameBlkY
+        
 
     #horizontal edge crossing detection
     if x < curBlkX * blkSize:
@@ -290,6 +300,28 @@ while not dead:
                     y = bc(curBlkY - 1) + blkSize
                     ySpeed = 0
 
+    #If we are inside a solid block, it means we are moving very quickly. Move to the edge of the previous empty block we were in
+    if blkMap[curBlkY][curBlkX] == 1:
+        #Determine which direction we came into this block from 
+        if prevBlkY > curBlkY:
+            #we are moving up
+            y = bc(prevBlkY)
+            ySpeed = 0
+        elif prevBlkY < curBlkY:
+            #we are moving down
+            y = bc(prevBlkY) + blkSize - jousHeight
+            ySpeed = 0 
+        if prevBlkX > curBlkX:
+            #we are moving left
+            x = bc(prevBlkX)
+            xSpeed = 0
+        elif prevBlkX < curBlkX:
+            #we are moving right
+            x = bc(prevBlkX) + blkSize - jousWidth
+            xSpeed = 0  
+
+    prevFrameBlkX = curBlkX
+    prevFrameBlkY = curBlkY
 
     #render map
     for row in range(0, 9):
@@ -298,7 +330,6 @@ while not dead:
                 drawBlock(col, row, black)    
 
     jousboxx(x, y)
-
     pygame.display.update()
     clock.tick(60)
 
