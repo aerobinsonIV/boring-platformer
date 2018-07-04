@@ -1,6 +1,4 @@
-idk i was just supposed to make this
-
-i mean come on dude it's literally a python script
+come on dude it's literally a python script
 
 that's it
 
