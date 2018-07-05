@@ -129,10 +129,8 @@ while not dead:
         ySpeed = -30
     if downKey:
         ySpeed += accel
-        if ySpeed > topSpeed:
-            ySpeed = topSpeed
     #gravity
-    ySpeed += 1
+    ySpeed += 1.2
 
     #actual motion
     x += xSpeed
