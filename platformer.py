@@ -57,7 +57,7 @@ blkMap = [
     [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1],
-    [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+    [2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
 
 
@@ -112,7 +112,6 @@ while not dead:
                 downKey = False
     
     gameDisplay.fill(white)
-
 
     #keypresses to acceleration
     if leftKey:
@@ -321,11 +320,17 @@ while not dead:
     prevFrameBlkX = curBlkX
     prevFrameBlkY = curBlkY
 
+    #We are inside the goal block
+    if blkMap[curBlkY][curBlkX] == 2:
+        print("ayayayayayayayayayayaya")
+
     #render map
     for row in range(0, 9):
         for col in range(0, 16):
             if blkMap[row][col] == 1:
-                drawBlock(col, row, black)    
+                drawBlock(col, row, black)   
+            elif blkMap[row][col] == 2:
+                drawBlock(col, row, green)
 
     jousboxx(x, y)
     pygame.display.update()
