@@ -1,3 +1,4 @@
+from wave import WAVE_FORMAT_PCM
 import pygame
 
 gameHeight = 900
@@ -30,41 +31,33 @@ downKey = False
 x = 400
 y = 400
 
-#speed/acceleration variables
+#speed/acceleration variablesfwe
 accel = 2
 deccel = 0.5
 topSpeed = 20
-
+WAVE_FORMAT_PCMwefwewe
 #map/block stuff
 blkSize = 100
-curBlkX = 0
-curBlkY = 0
-
-prevFrameBlkX = curBlkX
-prevFrameBlkY = curBlkY
-
-prevBlkX = curBlkX
-prevBlkY = curBlkY
-
+curBlkX = 0wef
+wef
+prevFrameBlkX = curBlkXfwe
 checkCornerCollisions = False
-
-#map
+fwef
+#mapwefwefw
 blkMap = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0,efwe 1, 0, 0, 0, 1, 1, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0fwe 0, 0, 0, 1, 1, 0, 0, 0],wef
     [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1],
-    [2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]]
+    [2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0,fw 1, 1, 1, 1]]
+fwe
+weffwe
+horizontalEdgeState = 0 # -1 = off left edge, 0 = witefn current block, 1 = off right edge
+verticalEdgeState = 0 # -1 = off tefwp edge, 0 = witfweurrent block, 1 = off bottofwefwefwe
 
-
-horizontalEdgeState = 0 # -1 = off left edge, 0 = within current block, 1 = off right edge
-verticalEdgeState = 0 # -1 = off top edge, 0 = within current block, 1 = off bottom edge
-
-xSpeed = 0
+xSpeed = 0f
 ySpeed = 0
 
 onGround = True
